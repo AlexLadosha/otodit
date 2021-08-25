@@ -22,9 +22,9 @@ class PostController extends Controller
 
     public function create()
     {
-        $categories = Category::pluck('title', 'id')->all();
-        $tags = Tag::pluck('title', 'id')->all();
-        return view('admin.posts.create', compact('categories', 'tags'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.posts.create', ['categories' => $categories, 'tags' => $tags]);
     }
 
 
@@ -53,9 +53,10 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        $categories = Category::pluck('title', 'id')->all();
-        $tags = Tag::pluck('title', 'id')->all();
-        return view('admin.posts.edit', compact('categories', 'tags', 'post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('admin.posts.edit', ['categories'=> $categories, 'post' => $post, 'tags' => $tags]);
     }
 
     public function update(Request $request, $id)

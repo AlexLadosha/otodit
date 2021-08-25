@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(10);
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.categories.index', ['categories' => $categories]);
 
     }
 
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
        $category = Category::find($id);
-       return view('admin.categories.edit', compact('category'));
+       return view('admin.categories.edit', ['category' => $category]);
     }
 
     public function update(Request $request, $id)
